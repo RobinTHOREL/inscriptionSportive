@@ -1,73 +1,75 @@
 package inscriptionsTest;
 
 import static org.junit.Assert.*;
+import java.util.Set;
 
 import org.junit.Test;
 
+import inscriptions.*;
 public class InscriptionsTest {
 
+	Inscriptions inscriptionTest = Inscriptions.getInscriptions();
+	Competition competitionEquipeTest = inscriptionTest.createCompetition("CompetEquipeTest", null, true);
+	Competition competitionSoloTest = inscriptionTest.createCompetition("CompetSoloTest", null, false);
+	Equipe equipeTest = inscriptionTest.createEquipe("EquipeTest");
+	Personne personneTest = inscriptionTest.createPersonne("TEST", "test", "tTEST@gmail.com");
+	
 	@Test
 	public void testGetCompetitions() {
-		fail("Not yet implemented");
+		Set<Competition> setCompetitionTest = inscriptionTest.getCompetitions();
+		assertFalse(setCompetitionTest.isEmpty());
+		
 	}
 
 	@Test
 	public void testGetCandidats() {
-		fail("Not yet implemented");
+		Set<Candidat> setCandidatTest = inscriptionTest.getCandidats();
+		assertFalse(setCandidatTest.isEmpty());
 	}
 
 	@Test
 	public void testCreateCompetition() {
-		fail("Not yet implemented");
+		Competition competitionTest2 = inscriptionTest.createCompetition("Test", null, false);
+		Set <Competition> setCompetitionTest = inscriptionTest.getCompetitions();
+		assertTrue(setCompetitionTest.contains(competitionTest2));
 	}
 
 	@Test
 	public void testCreatePersonne() {
-		fail("Not yet implemented");
+		Personne personneTest2 = inscriptionTest.createPersonne("", "", "");
+		Set<Candidat>setPersonneTest2 = inscriptionTest.getCandidats();
+		assertTrue(setPersonneTest2.contains(personneTest2));
 	}
 
 	@Test
 	public void testCreateEquipe() {
-		fail("Not yet implemented");
+		Equipe equipeTest2 = inscriptionTest.createEquipe("");
+		Set<Candidat>setEquipeTest2 = inscriptionTest.getCandidats();
+		assertTrue(setEquipeTest2.contains(equipeTest2));
 	}
 
 	@Test
 	public void testRemoveCompetition() {
-		fail("Not yet implemented");
+		Set<Competition> setCompetitionTest = inscriptionTest.getCompetitions();
+		competitionSoloTest.delete();
+		assertFalse(setCompetitionTest.contains(competitionSoloTest));
+		
 	}
 
 	@Test
 	public void testRemoveCandidat() {
-		fail("Not yet implemented");
+		Set<Candidat>setCandidatTest = inscriptionTest.getCandidats();
+		personneTest.delete();
+		assertFalse(setCandidatTest.contains(personneTest));
 	}
 
 	@Test
 	public void testGetInscriptions() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testReinitialiser() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testRecharger() {
-		fail("Not yet implemented");
+		assertEquals(inscriptionTest, Inscriptions.getInscriptions());
 	}
 
 	@Test
 	public void testSauvegarder() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testToString() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testMain() {
 		fail("Not yet implemented");
 	}
 

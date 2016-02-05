@@ -2,58 +2,54 @@ package inscriptionsTest;
 
 import static org.junit.Assert.*;
 
+import java.util.Set;
+
 import org.junit.Test;
+import inscriptions.*;
 
 public class PersonneTest {
+	
+	Inscriptions inscriptionTest = Inscriptions.getInscriptions();
+	Personne personneTest = inscriptionTest.createPersonne ("TEST", "test", "tTEST@gmail.com");
+	
 
 	@Test
 	public void testDelete() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testToString() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testPersonne() {
-		fail("Not yet implemented");
+		Equipe equipeTest = inscriptionTest.createEquipe("L'EQUIPE TEST");
+		equipeTest.add(personneTest);
+		Set<Equipe> setEquipesTest = personneTest.getEquipes();
+		personneTest.delete();
+		assertFalse(setEquipesTest.contains(personneTest));
 	}
 
 	@Test
 	public void testGetPrenom() {
-		fail("Not yet implemented");
+		assertEquals("test", personneTest.getPrenom());
 	}
 
 	@Test
 	public void testSetPrenom() {
-		fail("Not yet implemented");
+		personneTest.setPrenom("test1");
+		assertEquals("test1", personneTest.getPrenom());
 	}
 
 	@Test
 	public void testGetMail() {
-		fail("Not yet implemented");
+		assertEquals("tTEST@gmail.com", personneTest.getMail());
 	}
 
 	@Test
 	public void testSetMail() {
-		fail("Not yet implemented");
+		personneTest.setMail("TEST@gmail.com");
+		assertEquals("TEST@gmail.com", personneTest.getMail());
 	}
 
 	@Test
 	public void testGetEquipes() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testAddEquipe() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testRemoveEquipe() {
-		fail("Not yet implemented");
+		Equipe equipeTest = inscriptionTest.createEquipe("L'EQUIPE TEST");
+		equipeTest.add(personneTest);
+		Set<Equipe> setEquipesTest = personneTest.getEquipes();
+		assertTrue(setEquipesTest.contains(equipeTest));
 	}
 
 }
