@@ -69,7 +69,6 @@ public class CandidatTest {
 		competitionSoloTest.add(personneTest);
 		competitionEquipeTest.add(equipeTest);
 		System.out.println(personneTest.toString());
-		fail("Not yet implemented");
 	}
 
 }
