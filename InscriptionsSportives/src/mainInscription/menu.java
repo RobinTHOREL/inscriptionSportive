@@ -5,10 +5,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.SortedSet;
-
-import inscriptions.Equipe;
-import inscriptions.Inscriptions;
-import inscriptions.Personne;
+import inscriptions.*;
 import utilitaires.ligneDeCommande.Action;
 import utilitaires.ligneDeCommande.ActionListe;
 import utilitaires.ligneDeCommande.Liste;
