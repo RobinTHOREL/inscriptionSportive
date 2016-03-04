@@ -7,7 +7,7 @@ public class Driver {
 		try
 		{
 			//1.Connect to database
-			Connection myConnect= DriverManager.getConnection("jdbc:mysql://localhost:8889/Inscription","root","root");
+			Connection myConnect= DriverManager.getConnection("jdbc:mysql://localhost:3336/inscription","root","");
 			
 			//2.Create a statement
 			Statement MyState=myConnect.createStatement();
