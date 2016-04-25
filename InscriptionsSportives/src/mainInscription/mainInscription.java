@@ -10,7 +10,7 @@ public class mainInscription extends menu {
 	
 	public static void main (String[] args){
       
-		getMenu();
+		getMenuCompet();
 		
 	}
 

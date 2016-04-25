@@ -166,18 +166,30 @@ public class menu {
 		 Action ajoutCompet = new Action(){
 				@Override
 				public void optionSelectionnee() {
-					String date = utilitaires.EntreesSorties.getString("Date de cloture (ex: 2011-12-03) : ");
+					boolean Equipe=false;
+					String date = utilitaires.EntreesSorties.getString("Date de cloture (ex: 2000-12-03) : ");
 					LocalDate dateCloture= LocalDate.parse(date, DateTimeFormatter.ISO_LOCAL_DATE);	
 					String nomCompet = utilitaires.EntreesSorties.getString("Nom Competition : ");
-					String equipe = utilitaires.EntreesSorties.getString(" Match en Equipe ? (O/N) ");
-					boolean Equipe=false;
-					if(equipe =="O" || equipe=="o")
+					Integer equipe = utilitaires.EntreesSorties.getInt("Match en équipe ? (Oui = 1 / Non = 0) ");
+					
+					if(equipe == 1)
+					{
 						Equipe=true;
-					else if(equipe =="N" || equipe=="n")
+						inscription.createCompetition(nomCompet, dateCloture, Equipe);
+						System.out.println("Le match a été crée en équipe.");
+					}
+					else if(equipe == 0)
+					{
 						Equipe=false;
+						inscription.createCompetition(nomCompet, dateCloture, Equipe);
+						System.out.println("Le match n'a été crée en équipe.");
+					}
 					else
+					{
+						System.out.println(equipe);
 						System.out.println("Une erreur de saisi a eu lieu, par defaut le match n'est pas par Equipe.");
-					inscription.createCompetition(nomCompet, dateCloture, Equipe);
+						inscription.createCompetition(nomCompet, dateCloture, Equipe);
+					}
 				}
 	        };
 	        Option ajouCompet= new Option("Ajouter Competition", "1", ajoutCompet);
