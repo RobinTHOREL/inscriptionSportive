@@ -18,6 +18,7 @@ public class menu {
 	static Menu menu = new Menu("Bienvenue");
 	static Menu menuInscription = new Menu("Inscription");
 	static Menu menuCompet = new Menu("Competiton");
+	
 	public static void listPers(){
 		SortedSet<inscriptions.Candidat> candidats = inscription.getCandidats();
 		List<String> personnes = new ArrayList<>();
@@ -26,6 +27,7 @@ public class menu {
 				personnes.add((String) candidat.getNom());
 		ListePers(personnes);
 	}
+	
 	public static void ListePers(final List<String> pers){
 		Liste<String> menu = new Liste<String>("Liste des Personnes", 
 				new ActionListe<String>()
@@ -87,7 +89,7 @@ public class menu {
 			{
 				return compet;
 			}
-	// Exécutée automatiquement lorsqu'un élément de liste est sélectionné
+			// Exécutée automatiquement lorsqu'un élément de liste est sélectionné
 		    public void elementSelectionne(int indice, String element)
 		    {
 			    System.out.println("Vous avez sélectionné "+ element+ ", qui a l'indice " + indice);
