@@ -11,7 +11,7 @@ public class mainInscription extends menu {
 	public static void main (String[] args){
       
 		//Affiche le menu 23
-		getMenu();
+		getMenuPrincipal();
 		
 	}
 
