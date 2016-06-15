@@ -1,13 +1,11 @@
 package inscriptionsTest;
-import static org.junit.Assert.*;
 
+import static org.junit.Assert.*;
 import java.util.Set;
+
 import org.junit.Test;
-import inscriptions.Candidat;
-import inscriptions.Competition;
-import inscriptions.Equipe;
-import inscriptions.Inscriptions;
-import inscriptions.Personne;
+
+import inscriptions.*;
 public class InscriptionsTest {
 
 	Inscriptions inscriptionTest = Inscriptions.getInscriptions();

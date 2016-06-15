@@ -33,10 +33,17 @@ public class CompetitionTest {
 
 	@Test
 	public void testSetDateCloture() {
-		competitionEquipeTest.setDateCloture(LocalDate.of(2017, 02, 11));
-		assertEquals(LocalDate.of(2017, 02, 11), competitionEquipeTest.getDateCloture());
+		
+		 	
+  		assertEquals(LocalDate.of(2017, 02, 11), competitionEquipeTest.getDateCloture());
 	}
-
+	
+	@Test
+	public void testInscriptionEstOuverte(){
+		LocalDate dateTest = LocalDate.of(2018,05,05);
+		LocalDate dateTest2 = LocalDate.of(2012,05,05);
+		assertTrue(competitionEquipeTest.inscriptionEstOuverte() && !competitionSoloTest.inscriptionEstOuverte());
+	}
 	@Test
 	public void testGetCandidats() {
 		competitionEquipeTest.add(equipeTest);
