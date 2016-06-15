@@ -14,10 +14,10 @@ import utilitaires.ligneDeCommande.Option;
 
 public class menu {
 	
-	static Inscriptions inscription = Inscriptions.getInscriptions();
+	static final Inscriptions inscription = Inscriptions.getInscriptions();
 	static Menu menuPrincipal = new Menu("Bienvenue \nFaites votre choix\n--------------------\n");
 	static Menu menuPersonne = new Menu("\nMenu des personnes et equipes\n--------------------\n");
-	static Menu menuCompet = new Menu("\nMenu des competitons\n--------------------\n");
+	static Menu menuCompet = new Menu("\nMenu des compétitons\n--------------------\n");
 	
 //Renvoie la liste des personnes
 	public static List<Personne> GetPers()
@@ -74,7 +74,7 @@ public class menu {
 			}
 		};
 		
-		Option competi = new Option("Competitions", "2", compet);
+		Option competi = new Option("Compétitions", "2", compet);
 		
 		menuPrincipal.ajoute(inscrit);
 		menuPrincipal.ajoute(competi);
@@ -100,6 +100,7 @@ public class menu {
 				for (Candidat candidat : candidats)
 					if (candidat instanceof Personne)
 						personnes.add((Personne)candidat);
+						
 				personnes.add(pers);
 			}
 		};
@@ -299,14 +300,23 @@ public class menu {
 				{
 					String dateCloture = utilitaires.EntreesSorties.getString("Saisissez la nouvelle date de cloture (ex: 2011-12-03) : ");
 					LocalDate Cloture = LocalDate.parse(dateCloture);
-					element.setDateCloture(Cloture);
-					System.out.println("La nouvelle date de cloture est : " + Cloture );
+					try
+					{
+						element.setDateCloture(Cloture);
+						System.out.println("La nouvelle date de cloture est : " + Cloture );
+					} 
+					catch (Exception e) 
+					{
+						System.out.println("La nouvelle date de cloture n'a pas été pris en compte " + Cloture );
+						e.printStackTrace();
+					}
+					
 				}
 			});
 			
 			menuCompet.ajoute(ModifDateCloture);
 			
-			Liste<Competition> Competition = new Liste<Competition>("Supprimer une competition","4", new ActionListe<Competition>()
+			Liste<Competition> competition = new Liste<Competition>("Supprimer une competition","4", new ActionListe<Competition>()
 			{
 				
 				public List<Competition> getListe()
@@ -321,7 +331,41 @@ public class menu {
 				}
 			});
 			
-			menuCompet.ajoute(Competition);
+			
+			
+			menuCompet.ajoute(competition);
+			
+			Liste<Personne> AddPersonne = new Liste<Personne>("Ajouter personne dans une competition","5", new ActionListe<Personne>()
+			{
+				
+				public List<Personne> getListe()
+				{
+					return GetPers();
+				}
+
+				public void elementSelectionne(int indice, final Personne personne) {
+					Liste<Competition> competitionsListe = new Liste<Competition>(
+							"Sélectionner une compétition",
+							new ActionListe<Competition>() {
+
+								@Override
+								public List<Competition> getListe() {
+									return new ArrayList<>(inscription.getCompetitions());
+								}
+
+								@Override
+								public void elementSelectionne(int indice, Competition competition) {
+									competition.add(personne);
+								}
+								
+							});
+				}
+			});
+			
+			
+			
+			menuCompet.ajoute(AddPersonne);
+			
 	        menuCompet.ajouteRevenir("r");
 	        menuCompet.start();
 	}
